@@ -4,7 +4,7 @@ const WalletState = types
   .model({
     connecting: types.optional(types.boolean, false),
     connected: types.optional(types.boolean, false),
-    quizBalance: types.optional(types.number, 0),
+    quizBalance: types.optional(types.string, "0"),
     errorMessage: types.optional(types.string, ""),
     account: types.optional(types.string, ""),
     balance: types.optional(types.string, "0"),
@@ -20,7 +20,7 @@ const WalletState = types
     function setConnected(state: boolean) {
       self.connected = state;
     }
-    function setQuizBalance(value: number) {
+    function setQuizBalance(value: string) {
       self.quizBalance = value;
     }
     function setBalance(value: string) {
@@ -51,7 +51,7 @@ export const store = RootStore.create({
   wallet: {
     connected: false,
     connecting: false,
-    quizBalance: 0,
+    quizBalance: "0",
     invalidChain: false,
   },
 });

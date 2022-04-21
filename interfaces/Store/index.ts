@@ -6,13 +6,13 @@ export interface StoreData {
     account: string;
     connecting: boolean;
     connected: boolean;
-    quizBalance: number;
+    quizBalance: string;
     errorMessage: string;
     invalidChain: boolean;
   } & NonEmptyObject & {
       setConnecting: (state: boolean) => void;
       setConnected: (state: boolean) => void;
-      setQuizBalance: (value: number) => void;
+      setQuizBalance: (value: string) => void;
       setErrorMessage: (message: string) => void;
     } & IStateTreeNode;
 }

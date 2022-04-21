@@ -9,16 +9,17 @@ type Props = { title?: string; children: React.ReactNode };
 export const MainLayout: FC<Props> = ({ children, title }) => {
   return (
     <>
-      <Header
+      <div
         style={{
+          padding:'10px 20px 10px 20px',
           position: "fixed",
           zIndex: 1,
           width: "100%",
-          backgroundColor: "transparent",
+          backgroundColor: "#f4f4f4",
         }}
       >
         <Navbar store={store} />
-      </Header>
+      </div>
       <Content>
         <>{children}</>
       </Content>

@@ -1,19 +1,25 @@
 import React from "react";
 import { ButtonWallet } from "../ButtonWallet/index";
 import { store } from "../../store/index";
-import { Row, Col, Typography } from "antd";
+import { Row, Col, Typography, Space } from "antd";
 import { observer } from "mobx-react-lite";
 import { StoreData } from "../../interfaces";
-
+const { Text } = Typography;
 export const Navbar = observer((props: { store: StoreData }) => (
-  <>
-    <Row>
-      <Col span={12}>
-        <Typography>{`address:${props.store.wallet.account}`}</Typography>
+  <> 
+    <Row gutter={[0, 0]}>
+      <Col xs={24} sm={12}  >
+        <Space direction="vertical">
+          <Text>{`address: ${props.store.wallet.account}`}</Text>
+          
+          <Text
+            style={{ margin: 0, padding: 0 }}
+          >{`Quiz Balance: ${props.store.wallet.quizBalance}`}</Text>
+        </Space>
       </Col>
-
-      <Col span={6}></Col>
-      <Col span={6}>
+      <Col xs={1} md={4}></Col>
+      <Col xs={1} md={4}></Col>
+      <Col xs={4}>
         <ButtonWallet store={store}></ButtonWallet>
       </Col>
     </Row>
