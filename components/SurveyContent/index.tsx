@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { observer } from "mobx-react-lite";
 import { StoreData } from "../../interfaces/Store/index";
 import { survey } from "../../Data/survey";
-import { Col, Row, Typography } from "antd";
+import { Col, Row, Space, Typography } from "antd";
 import { Steps, Button, message } from "antd";
 const { Text, Title } = Typography;
 const { Step } = Steps;
@@ -33,11 +33,8 @@ export const SurveyForm: FC<{ store: StoreData }> = ({ store }) => {
     <>
       <Steps current={current}>
         <>
-          {" "}
           {survey.questions.map((item, index) => (
-            <>
-              <Step key={index} title={"Question"}></Step>
-            </>
+            <Step key={index} title={"Question"}></Step>
           ))}
         </>
       </Steps>
