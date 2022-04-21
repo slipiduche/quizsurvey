@@ -39,12 +39,42 @@ const WalletState = types
       setBalance,
       setErrorMessage,
       setAccount,
-      setInvalidChain
+      setInvalidChain,
     };
   });
 
+const Answer = types.model({
+  answer: types.optional(types.number, 0),
+});
+const SurveyState = types
+  .model({
+    timeLeft: types.optional(types.number, 10),
+    currentQuestion: types.optional(types.number, 0),
+    currentAnswer: types.optional(types.number, 0),
+    finished: types.optional(types.boolean, false),
+    answers: types.map(Answer),
+  })
+  .actions((self) => ({
+    addAnswer(answer: number, id: string) {
+      self.answers.set(id, Answer.create({ answer }));
+    },
+    setTimeLeft(timeLeft: number) {
+      self.timeLeft = timeLeft;
+    },
+    setCurrentQuestion(currentQuestion: number) {
+      self.currentQuestion = currentQuestion;
+    },
+    setCurrentAnswer(currentAnswer: number) {
+      self.currentAnswer = currentAnswer;
+    },
+    setFinished(finished: boolean) {
+      self.finished = finished;
+    },
+  }));
+
 const RootStore = types.model({
   wallet: WalletState,
+  survey: SurveyState,
 });
 
 export const store = RootStore.create({
@@ -54,4 +84,5 @@ export const store = RootStore.create({
     quizBalance: "0",
     invalidChain: false,
   },
+  survey: {},
 });

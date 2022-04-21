@@ -1,11 +1,13 @@
 import { Button, Col, Image, Row, Space, Typography } from "antd";
 import { observer } from "mobx-react-lite";
+import { useRouter } from "next/router";
 
 import React from "react";
 import { survey } from "../../Data/survey";
 import { StoreData } from "../../interfaces";
 const { Text, Title } = Typography;
 export const HomeContent = observer((props: { store: StoreData }) => {
+  const router = useRouter();
   return (
     <div style={{ paddingTop: "110px" }}>
       {" "}
@@ -47,7 +49,9 @@ export const HomeContent = observer((props: { store: StoreData }) => {
               type="primary"
               shape="round"
               disabled={!props.store.wallet.connected}
-              onClick={() => {}}
+              onClick={() => {
+                router.replace("/survey");
+              }}
             >
               Take the survey
             </Button>
