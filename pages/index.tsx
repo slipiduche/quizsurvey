@@ -1,19 +1,13 @@
-import { Col, Row, Typography } from "antd";
-import type { NextPage } from "next";
 import { MainLayout } from "../components";
+import { HomeContent } from "../components";
+import { NextPage } from "next";
+import { store } from "../store";
 
-const { Text, Title } = Typography;
 const Home: NextPage = () => {
   return (
     <>
       <MainLayout>
-        <div style={{ paddingTop: "100px" }}>
-          <Row>
-            <Col xs={24}>
-              <Title level={4} style={{textAlign:'center'}}>daily survey</Title>
-            </Col>
-          </Row>
-        </div>
+        <HomeContent store={store}></HomeContent>
       </MainLayout>
     </>
   );
