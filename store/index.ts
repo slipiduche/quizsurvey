@@ -1,4 +1,5 @@
 import { IMSTArray, ISimpleType, types } from "mobx-state-tree";
+import { StoreData } from "../interfaces/Store/index";
 
 const WalletState = types
   .model({
@@ -52,6 +53,7 @@ const SurveyState = types
     currentQuestion: types.optional(types.number, 0),
     currentAnswer: types.optional(types.number, 0),
     finished: types.optional(types.boolean, false),
+    started: types.optional(types.boolean, false),
     answers: types.map(Answer),
   })
   .actions((self) => ({
@@ -69,6 +71,9 @@ const SurveyState = types
     },
     setFinished(finished: boolean) {
       self.finished = finished;
+    },
+    setStarted(started: boolean) {
+      self.started = started;
     },
   }));
 

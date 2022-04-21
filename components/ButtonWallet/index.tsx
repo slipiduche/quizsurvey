@@ -9,7 +9,7 @@ import { connectHandler, switchNetwork } from "../../wallet/index";
 export const ButtonWallet = observer((props: { store: StoreData }) => (
   <Space style={{}}>
     <Button
-      style={{ float: "right" }}
+      style={{ float: "right", margin:'0', }}
       type="primary"
       shape="round"
       icon={<WalletOutlined />}

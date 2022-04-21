@@ -47,8 +47,7 @@ export const connectHandler = async () => {
       const res = await web3.request({
         method: "eth_requestAccounts",
       });
-      console.log(res[0]);
-      console.log(typeof res[0]);
+
       store.wallet.setAccount(res[0]);
       store.wallet.setConnecting(false);
       store.wallet.setConnected(true);
@@ -70,7 +69,7 @@ export const connectHandler = async () => {
 };
 export const accountsChanged = async (newAccount: string | string[]) => {
   const web3 = window.ethereum;
-  console.log(newAccount);
+
   if (typeof newAccount == "string") {
     store.wallet.setAccount(newAccount);
   } else {
