@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import { Layout } from "../components";
+import { MainLayout } from "../components";
 
 const Home: NextPage = () => {
   return (
     <>
-      <Layout><>Home layout</></Layout>
+      <MainLayout><>Home layout</></MainLayout>
     </>
   );
 };
