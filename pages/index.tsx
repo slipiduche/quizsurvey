@@ -1,11 +1,10 @@
 import type { NextPage } from "next";
-import ButtonWallet from "../components/ButtonWallet";
-
+import { Layout } from "../components";
 
 const Home: NextPage = () => {
   return (
     <>
-      <ButtonWallet></ButtonWallet>
+      <Layout><>Home layout</></Layout>
     </>
   );
 };
