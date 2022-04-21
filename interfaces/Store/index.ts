@@ -3,10 +3,12 @@ import { NonEmptyObject } from "mobx-state-tree/dist/types/complex-types/model";
 
 export interface StoreData {
   wallet: {
+    account: string;
     connecting: boolean;
     connected: boolean;
     quizBalance: number;
     errorMessage: string;
+    invalidChain: boolean;
   } & NonEmptyObject & {
       setConnecting: (state: boolean) => void;
       setConnected: (state: boolean) => void;

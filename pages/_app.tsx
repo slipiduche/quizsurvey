@@ -3,14 +3,15 @@ import type { AppProps } from "next/app";
 import "antd/dist/antd.css";
 import { ethers } from "ethers";
 import { useEffect } from "react";
-import { accountsChanged, chainChanged } from "../wallet";
+import { accountsChanged, chainChanged, verifyNetwork } from "../wallet";
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    if (window.ethereum) {
-      //console.log('eth')
-      window.ethereum.on("accountsChanged", accountsChanged);
-      window.ethereum.on("chainChanged", chainChanged);
-    }
+    console.log("useEffect");
+
+    verifyNetwork();
+
+    window.ethereum.on("accountsChanged", accountsChanged);
+    window.ethereum.on("chainChanged", chainChanged);
   }, []);
   return <Component {...pageProps} />;
 }

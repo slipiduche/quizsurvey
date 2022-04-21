@@ -1,8 +1,43 @@
 import { ethers } from "ethers";
-import { IMSTArray, ISimpleType } from "mobx-state-tree";
 import { store } from "../store";
 
+export const verifyNetwork = async () => {
+  if (window.ethereum) {
+    const res = await window.ethereum.request({ method: "eth_chainId" });
+    if (res == "0x3") {
+      store.wallet.setInvalidChain(false);
+    } else {
+      store.wallet.setInvalidChain(true);
+    }
+  } else {
+    // if no window.ethereum then MetaMask is not installed
+    alert(
+      "MetaMask is not installed. Please consider installing it: https://metamask.io/download.html"
+    );
+  }
+};
+export const switchNetwork = async () => {
+  if (window.ethereum) {
+    try {
+      // check if the chain to connect to is installed
+      console.log("switching to robstein");
+      await window.ethereum.request({
+        method: "wallet_switchEthereumChain",
+        params: [{ chainId: "0x3" }], // chainId must be in hexadecimal numbers
+      });
+      store.wallet.setInvalidChain(false);
+    } catch (error: any) {
+      console.error(error);
+    }
+  } else {
+    // if no window.ethereum then MetaMask is not installed
+    alert(
+      "MetaMask is not installed. Please consider installing it: https://metamask.io/download.html"
+    );
+  }
+};
 export const connectHandler = async () => {
+  console.log("connectHandler");
   if (window.ethereum) {
     try {
       const res = await window.ethereum.request({
@@ -10,7 +45,9 @@ export const connectHandler = async () => {
       });
       console.log(res[0]);
       console.log(typeof res[0]);
-      await accountsChanged(res[0]);
+      store.wallet.setAccount(res[0]);
+      store.wallet.setConnecting(false);
+      store.wallet.setConnected(true);
     } catch (err) {
       console.error(err);
       store.wallet.setErrorMessage(
@@ -27,11 +64,14 @@ export const connectHandler = async () => {
   }
 };
 export const accountsChanged = async (newAccount: string | string[]) => {
+  console.log(newAccount);
   if (typeof newAccount == "string") {
     store.wallet.setAccount(newAccount);
   } else {
     store.wallet.setAccount(newAccount[0]);
   }
+
+  await connectHandler();
 
   try {
     const balance = await window.ethereum.request({
