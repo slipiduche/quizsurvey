@@ -49,11 +49,12 @@ const Answer = types.model({
 });
 const SurveyState = types
   .model({
-    timeLeft: types.optional(types.number, 10),
+    timeLeft: types.optional(types.number, 50),
     currentQuestion: types.optional(types.number, 0),
     currentAnswer: types.optional(types.number, 0),
     finished: types.optional(types.boolean, false),
     started: types.optional(types.boolean, false),
+    waiting: types.optional(types.boolean, false),
     answers: types.map(Answer),
   })
   .actions((self) => ({
@@ -74,6 +75,9 @@ const SurveyState = types
     },
     setStarted(started: boolean) {
       self.started = started;
+    },
+    setWaiting(waiting: boolean) {
+      self.waiting = waiting;
     },
   }));
 

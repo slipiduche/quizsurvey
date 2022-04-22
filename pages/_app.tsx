@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { accountsChanged, chainChanged, verifyNetwork } from "../wallet";
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    console.log("useEffect");
+    //console.log("useEffect");
 
     verifyNetwork();
 
