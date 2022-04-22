@@ -55,6 +55,7 @@ const SurveyState = types
     finished: types.optional(types.boolean, false),
     started: types.optional(types.boolean, false),
     waiting: types.optional(types.boolean, false),
+    submited: types.optional(types.boolean, false),
     answers: types.map(Answer),
   })
   .actions((self) => ({
@@ -78,6 +79,9 @@ const SurveyState = types
     },
     setWaiting(waiting: boolean) {
       self.waiting = waiting;
+    },
+    setSubmited(submited: boolean) {
+      self.submited = submited;
     },
   }));
 

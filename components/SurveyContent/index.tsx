@@ -6,6 +6,8 @@ import { Col, Radio, Row, Space, Typography } from "antd";
 import { Steps, Button, message } from "antd";
 import { useEffect } from "react";
 import { submitAnswers } from "../../wallet";
+import { SubmitedDialog } from "../SubmitedDialog/index";
+import { store } from "../../store/index";
 const { Text, Title } = Typography;
 const { Step } = Steps;
 
@@ -162,25 +164,29 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
           </Button>
         )}
         {props.store.survey.currentQuestion === survey.questions.length - 1 && (
-          <Button
-            shape="round"
-            type="primary"
-            onClick={() => {
-              //message.success("Processing complete!");
-              if (!props.store.survey.finished) {
-                props.store.survey.addAnswer(
-                  props.store.survey.currentAnswer,
-                  props.store.survey.currentQuestion.toString()
-                );
-              }
-              props.store.survey.setFinished(true);
-              props.store.survey.setStarted(false);
-              console.log(props.store.survey);
-              submitAnswers(props.store.survey.answers.toJSON());
-            }}
-          >
-            Submit
-          </Button>
+          <div>
+            <Button
+              shape="round"
+              type="primary"
+              onClick={() => {
+                //message.success("Processing complete!");
+                if (!props.store.survey.finished) {
+                  props.store.survey.addAnswer(
+                    props.store.survey.currentAnswer,
+                    props.store.survey.currentQuestion.toString()
+                  );
+                }
+                props.store.survey.setFinished(true);
+                props.store.survey.setStarted(false);
+                console.log(props.store.survey);
+                props.store.survey.setSubmited(true);
+                submitAnswers(props.store.survey.answers.toJSON());
+              }}
+            >
+              Submit
+            </Button>
+            <SubmitedDialog store={props.store}></SubmitedDialog>
+          </div>
         )}
         {props.store.survey.currentQuestion >= 0 && (
           <Text style={{ margin: "0 8px" }}>
