@@ -55,6 +55,10 @@ a web app with a quiz form that rewards users with tokens for participating in t
 
 [![Product Name Screen Shot][product-screenshot]](http://quizsurvey.vercel.app/)
 
+<br />
+    <a href="https://github.com/slipiduche/quizsurvey/tree/main/images"><strong>More Images »</strong></a>
+    <br />
+
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 ### Built With
@@ -148,5 +152,5 @@ Project Link: [https://github.com/slipiduche/quizsurvey](https://github.com/slip
 [license-url]: https://github.com/slipiduche/quizsurvey/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/alejandro-camacaro-9ba1b558
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/profile.png
 [metamask-balance-screenshot]: images/metamask-balance-screenshot.png
