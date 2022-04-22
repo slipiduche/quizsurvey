@@ -40,8 +40,8 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
       console.log("started");
       props.store.survey.setWaiting(true);
       setTimeout(() => {
-        props.store.survey.setTimeLeft(props.store.survey.timeLeft - 1);
         props.store.survey.setWaiting(false);
+        props.store.survey.setTimeLeft(props.store.survey.timeLeft - 1);
       }, 1000);
     } else if (!props.store.survey.waiting) {
       if (props.store.survey.currentQuestion < survey.questions.length - 1) {
@@ -141,6 +141,12 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
             type="primary"
             onClick={() => {
               //message.success("Processing complete!");
+              if (!props.store.survey.finished) {
+                props.store.survey.addAnswer(
+                  props.store.survey.currentAnswer,
+                  props.store.survey.currentQuestion.toString()
+                );
+              }
               props.store.survey.setFinished(true);
               props.store.survey.setStarted(false);
               console.log(props.store.survey);

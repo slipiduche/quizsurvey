@@ -129,12 +129,12 @@ export const getQuizBalance = async () => {
   store.wallet.setQuizBalance(stringBalance);
 };
 export const submitAnswers = async (answers: any) => {
-  console.log(answers);
+  //console.log(answers);
   let answersList = [];
   for (const answer in answers) {
     answersList.push(answers[answer]["answer"]);
   }
-  console.log(answersList);
+  //console.log(answersList);
   const web3 = window.ethereum;
   // JSON ABI of the token contract
   const provider = new ethers.providers.Web3Provider(web3);
@@ -148,7 +148,4 @@ export const submitAnswers = async (answers: any) => {
   );
   const result = await quiz.submit(58, answersList);
   console.log(result);
-  // const balance: BigNumber = await token.balanceOf(
-  //   "0x7b45452a0ba54ea3e891e4a6a2fe9adb575e8b69"
-  // );
 };
