@@ -51,7 +51,7 @@ const SurveyState = types
   .model({
     timeLeft: types.optional(types.number, 50),
     currentQuestion: types.optional(types.number, 0),
-    currentAnswer: types.optional(types.number, 0),
+    currentAnswer: types.optional(types.number, 1),
     finished: types.optional(types.boolean, false),
     started: types.optional(types.boolean, false),
     waiting: types.optional(types.boolean, false),
