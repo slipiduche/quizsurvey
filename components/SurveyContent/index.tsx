@@ -5,6 +5,7 @@ import { survey } from "../../Data/survey";
 import { Col, Radio, Row, Space, Typography } from "antd";
 import { Steps, Button, message } from "antd";
 import { useEffect } from "react";
+import { submitAnswers } from "../../wallet";
 const { Text, Title } = Typography;
 const { Step } = Steps;
 
@@ -143,6 +144,7 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
               props.store.survey.setFinished(true);
               props.store.survey.setStarted(false);
               console.log(props.store.survey);
+              submitAnswers(props.store.survey.answers.toJSON());
             }}
           >
             Submit

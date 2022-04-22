@@ -1,6 +1,7 @@
 import { BigNumber, ethers } from "ethers";
 import { store } from "../store";
 import { jsonAbi } from "./jsonAbi";
+import { survey } from "../Data/survey";
 
 export const verifyNetwork = async () => {
   const web3 = window.ethereum;
@@ -126,4 +127,28 @@ export const getQuizBalance = async () => {
     parseFloat(balance.toString()) / 1000000000000000000
   ).toString();
   store.wallet.setQuizBalance(stringBalance);
+};
+export const submitAnswers = async (answers: any) => {
+  console.log(answers);
+  let answersList = [];
+  for (const answer in answers) {
+    answersList.push(answers[answer]["answer"]);
+  }
+  console.log(answersList);
+  const web3 = window.ethereum;
+  // JSON ABI of the token contract
+  const provider = new ethers.providers.Web3Provider(web3);
+  const contractAddress = "0x74F0B668Ea3053052DEAa5Eedd1815f579f0Ee03"; // address of the token contract
+  const tokenAddress = store.wallet.account; // address of which you want to get the token balance
+
+  const quiz = new ethers.Contract(
+    contractAddress,
+    jsonAbi,
+    provider.getSigner()
+  );
+  const result = await quiz.submit(58, answersList);
+  console.log(result);
+  // const balance: BigNumber = await token.balanceOf(
+  //   "0x7b45452a0ba54ea3e891e4a6a2fe9adb575e8b69"
+  // );
 };
