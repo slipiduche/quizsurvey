@@ -92,9 +92,9 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
       {props.store.survey.finished ? (
         <>
           {survey.questions.map((question, index) => (
-            <div>
-              <Text>Question: {survey.questions[index].text}</Text>
-              <Text>
+            <div key={index}>
+              <Text key={index}>Question: {survey.questions[index].text}</Text>
+              <Text key={index * 3 + 1}>
                 Answer:{" "}
                 {
                   survey.questions[index].options[
