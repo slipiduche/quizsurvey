@@ -9,11 +9,21 @@ export const Navbar = observer((props: { store: StoreData }) => (
     <Row gutter={[0, 0]}>
       <Col xs={24} sm={12}>
         <Space direction="vertical">
-          <Text>{`Address: ${props.store.wallet.account}`}</Text>
+          <div>
+            <Text strong>{`Address: `}</Text>{" "}
+            <Text
+              strong
+              style={{ color: "#1890ff" }}
+            >{`${props.store.wallet.account}`}</Text>
+          </div>
 
-          <Text
-          // style={{ margin: 0, padding: 0 }}
-          >{`Quiz Balance: ${props.store.wallet.quizBalance}`}</Text>
+          <div>
+            <Text strong>{`Quiz Balance: `}</Text>
+            <Text
+              strong
+              style={{ color: "#1890ff" }}
+            >{`${props.store.wallet.quizBalance}`}</Text>
+          </div>
         </Space>
       </Col>
       <Col xs={1} md={4}></Col>
