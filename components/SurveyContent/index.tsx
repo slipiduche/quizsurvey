@@ -16,7 +16,7 @@ export const SurveyContent = observer((props: { store: StoreData }) => {
         <Title level={4} style={{ textAlign: "center" }}>
           {survey.title}
         </Title>
-        <div style={{ padding: "20px" }}>
+        <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
           <SurveyForm store={props.store}></SurveyForm>
         </div>
       </Col>
@@ -78,7 +78,7 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
   };
 
   return (
-    <>
+    <div style={{ margin: "0 auto", width: "100%", textAlign: "center" }}>
       {props.store.survey.finished ? (
         <></>
       ) : (
@@ -91,12 +91,32 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
         </Steps>
       )}
       {props.store.survey.finished ? (
-        <>
+        <div style={{ margin: "0 auto", width: "100%", paddingTop: "10px" }}>
           {survey.questions.map((question, index) => (
-            <div key={index}>
-              <Text key={index}>Question: {survey.questions[index].text}</Text>
-              <Text key={index * 3 + 1}>
-                Answer:{" "}
+            <div
+              key={(index + 5) * index + 5}
+              style={{
+                margin: "0 auto",
+
+                width: "100%",
+                textAlign: "center",
+                paddingTop: "10px",
+              }}
+            >
+              <Text key={index} strong style={{ paddingLeft: "3%" }}>
+                Question {index + 1}:{"  "}
+              </Text>
+              <Text key={(index + 2) * index + 1}>
+                {survey.questions[index].text}
+              </Text>
+              <Text
+                key={(index + 3) * index + 2}
+                strong
+                style={{ paddingLeft: "3%" }}
+              >
+                Answer {index + 1}:{" "}
+              </Text>
+              <Text key={(index + 4) * index + 3}>
                 {
                   survey.questions[index].options[
                     props.store.survey.answers.toJSON()[`${index}`].answer - 1
@@ -105,13 +125,19 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
               </Text>
             </div>
           ))}
-        </>
+          <div style={{ marginTop: "20px" }}>
+            <Text strong style={{ paddingLeft: "3%" }}>
+              Thanks you for take your time please submit the answers and claim
+              your quiz tokens
+            </Text>
+          </div>
+        </div>
       ) : (
         <div>
-          <div className="steps-content">
+          <div className="steps-content" style={{ padding: "20px" }}>
             {survey.questions[props.store.survey.currentQuestion].text}
           </div>
-          <div className="steps-content">
+          <div className="steps-content" style={{ padding: "10px" }}>
             <Radio.Group
               onChange={(e) => {
                 props.store.survey.setCurrentAnswer(e.target.value);
@@ -129,7 +155,7 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
           </div>
         </div>
       )}
-      <div className="steps-action">
+      <div className="steps-action" style={{ paddingTop: "30px" }}>
         {props.store.survey.currentQuestion < survey.questions.length - 1 && (
           <Button type="primary" shape="round" onClick={() => next()}>
             Next
@@ -162,6 +188,6 @@ export const SurveyForm = observer((props: { store: StoreData }) => {
           </Text>
         )}
       </div>
-    </>
+    </div>
   );
 });

@@ -44,6 +44,7 @@ export const connectHandler = async () => {
   const web3 = window.ethereum;
   console.log("connectHandler");
   if (web3) {
+    store.wallet.setConnecting(true);
     try {
       const res = await web3.request({
         method: "eth_requestAccounts",

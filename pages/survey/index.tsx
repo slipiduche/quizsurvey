@@ -8,7 +8,7 @@ export default function SurveyPage() {
   return (
     <>
       <MainLayout>
-        <div style={{paddingTop:'110px', width:'100%'}}>
+        <div style={{paddingTop:'20px', width:'100%'}}>
           <SurveyContent store={store}></SurveyContent>
         </div>
       </MainLayout>

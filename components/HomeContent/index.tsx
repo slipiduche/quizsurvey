@@ -9,11 +9,11 @@ const { Text, Title } = Typography;
 export const HomeContent = observer((props: { store: StoreData }) => {
   const router = useRouter();
   return (
-    <div style={{ paddingTop: "110px" }}>
+    <div style={{ paddingTop: "20px" }}>
       {" "}
       <Row>
         <Col xs={24}>
-          <Title level={4} style={{ textAlign: "center" }}>
+          <Title level={3} style={{ textAlign: "center" }}>
             {survey.title}
           </Title>
         </Col>
@@ -36,7 +36,14 @@ export const HomeContent = observer((props: { store: StoreData }) => {
             direction="vertical"
             style={{ width: "100%", backgroundColor: "white" }}
           >
-            <Text style={{ textAlign: "start", fontSize: "22px" }}>
+            <Text
+              style={{
+                textAlign: "start",
+                fontSize: "22px",
+                paddingLeft: "20px",
+                paddingRight: "20px",
+              }}
+            >
               Answer the survey submit the results and get tokens in the
               process...
             </Text>
@@ -58,7 +65,14 @@ export const HomeContent = observer((props: { store: StoreData }) => {
             {props.store.wallet.connected ? (
               <></>
             ) : (
-              <Text style={{ textAlign: "start", fontSize: "22px" }}>
+              <Text
+                style={{
+                  textAlign: "start",
+                  fontSize: "22px",
+                  paddingLeft: "20px",
+                  paddingRight: "20px",
+                }}
+              >
                 Connect your wallet to take the survey
               </Text>
             )}

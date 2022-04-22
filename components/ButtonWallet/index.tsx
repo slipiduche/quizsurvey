@@ -7,7 +7,7 @@ import { StoreData } from "../../interfaces";
 import { connectHandler, switchNetwork } from "../../wallet/index";
 
 export const ButtonWallet = observer((props: { store: StoreData }) => (
-  <Space style={{}}>
+  <Space style={{paddingTop:'10px'}}>
     <Button
       style={{ float: "right", margin:'0', }}
       type="primary"
